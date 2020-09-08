@@ -13,9 +13,11 @@ public class Main {
 		tam_datagrama = Integer.parseInt(scn.nextLine());
 		System.out.println("Por favor ingrese el mtu de la red: ");
 		mtu = Integer.parseInt(scn.nextLine());
+		scn.close();
 		
 		Tabla tabla = new Tabla(tam_datagrama, mtu);
 		tabla.imprimir();
+		
 	}
 
 	public static void mensajear_roa() {
