@@ -10,6 +10,7 @@ public class Tabla {
 		ArrayList<String> tam_fragmentos = datagrama.fragmentar(tam_datagrama, mtu);
 		String[] flags = datagrama.calcularFlags(tam_fragmentos.size());
 		int[] desplazamientos = datagrama.calcularDesplazamiento(mtu, tam_fragmentos.size());
+		filas.add(crearEncabezadoTabla());
 		
 		for (int i = 0; i < tam_fragmentos.size() ; i++) {
 			//Desplazamiento en binario
@@ -25,6 +26,16 @@ public class Tabla {
 			fila += Util.convertirBinarioAHexa(String.format("%s%s", flags[i], desBin));
 			filas.add(fila);
 		}
+	}
+	
+	public String crearEncabezadoTabla() {
+		String fila = "";
+		fila += "Tam frag\t |";
+		fila += "flags 0 | df | mf\t |";
+		fila += "Offset bin\t |";
+		fila += "Offset dec\t |";
+		fila += "hexa";
+		return fila;
 	}
 	
 	public void imprimir() {
