@@ -6,7 +6,7 @@ public class Tabla {
 	ArrayList<String> filas = new ArrayList<String>();
 	
 	public Tabla() {
-		
+		ArrayList<String> flags = new ArrayList<>();
 		String fila = "";
 		
 		filas.add(fila);
