@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Datagrama {
+
 /**
  * Fragmenta el datagrama original dado un tamaño original y un MTU
  * @param tam_datagrama, mtu. El tamanio original del datagrama y el maximum transfer unit.
@@ -25,6 +26,7 @@ public class Datagrama {
 		else {
 			tam_fragmentos.add(""+(tam_datagrama+20));
 		}		
+
 		return tam_fragmentos;
 	}
 
@@ -57,6 +59,24 @@ public class Datagrama {
 		return flags;
 
 	}
-	
-	
+
+	/**
+	 * Metodo para calcular el desplazamiento de los fragmentos
+	 * 
+	 * @param mtu            el mtu de la red
+	 * @param cantFragmentos numero de fragmentos del datagrama
+	 * @return un arreglo con el desplazamiento de cada fragmento en decimal
+	 */
+	public int[] calcularDesplazamiento(int mtu, int cantFragmentos) {
+		int[] desplazamiento = new int[cantFragmentos];
+		int acum = 0;
+		// Se le descuenta 20 bytes al mtu para el encabezado del fragmento
+		mtu -= 20;
+		for (int i = 0; i < cantFragmentos; i++) {
+			desplazamiento[i] = acum;
+			acum += mtu;
+		}
+		return desplazamiento;
+	}
+
 }
