@@ -1,11 +1,17 @@
 package proy_datagrama;
 
+import java.util.Scanner;
+
 public class Main {
 
 	public static void main(String[] args) {
-		mensajear_roa();
-		printMessage();
-		printATodos();
+		int tam_datagrama = 0;
+		int mtu = 0;
+
+		Scanner scn = new Scanner(System.in);
+		System.out.println("Por favor ingrese el");
+		tam_datagrama = Integer.parseInt(scn.nextLine());
+		mtu = Integer.parseInt(scn.nextLine());
 	}
 
 	public static void mensajear_roa() {

@@ -1,21 +1,23 @@
 package proy_datagrama;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Datagrama {
-
-	public void fragmentar() {
-		int tam_datagrama = 0;
-		int mtu = 0;
-
-		Scanner scn = new Scanner(System.in);
-		System.out.println("Por favor ingrese el");
-		tam_datagrama = Integer.parseInt(scn.nextLine());
-		mtu = Integer.parseInt(scn.nextLine());
-
-		// TO-DO: Verificar que la fragmentación se haga de esta manera en las diapos.
-		int datagrama_headerless = tam_datagrama - 8;
-		int fragmentos = (int) Math.ceil(datagrama_headerless / (mtu - 20));
+/**
+ * Fragmenta el datagrama original dado un tamaño original y un MTU
+ * 
+ */
+	public ArrayList<String> fragmentar(int tam_datagrama, int mtu) {
+		ArrayList<String> tam_fragmentos = new ArrayList<>();
+		int fragmentos = (int) Math.ceil(tam_datagrama / (mtu - 20));
+		
+		
+		while(tam_datagrama > mtu) {
+			tam_fragmentos.add(""+(tam_datagrama-mtu));
+		}
+		tam_fragmentos.add(""+(tam_datagrama));
+		return tam_fragmentos;
 	}
 
 	/**
@@ -23,7 +25,7 @@ public class Datagrama {
 	 * 
 	 * @param cantFragmentos Cantidad de partes en que se divide el datagrama
 	 * @return Un arreglo de String donde cada posicion indica los flags de cada
-	 *         fragmento en orden, la primera posici�n corresponde al primer
+	 *         fragmento en orden, la primera posici�n corresponde al primer
 	 *         fragmento, la segunda al segundo, etc ...
 	 */
 	public String[] calcularFlags(int cantFragmentos) {

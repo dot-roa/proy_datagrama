@@ -1,5 +1,12 @@
 package proy_datagrama;
 
-public class Tabla {
+import java.util.ArrayList;
 
+public class Tabla {
+	ArrayList<String> filas = new ArrayList<String>();
+	
+	public Tabla() {
+		
+	}
+	
 }
