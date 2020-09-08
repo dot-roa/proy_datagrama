@@ -48,22 +48,5 @@ public class Datagrama {
 
 	}
 	
-	/**
-	 * Metodo para calcular el desplazamiento de los fragmentos
-	 * @param mtu el mtu de la red
-	 * @param cantFragmentos numero de fragmentos del datagrama
-	 * @return un arreglo con el desplazamiento de cada fragmento en decimal
-	 */
-	public int[] calcularDesplazamiento(int mtu, int cantFragmentos) {
-		int[] desplazamiento = new int[cantFragmentos];
-		int acum = 0;
-		//Se le descuenta 20 bytes al mtu para el encabezado del fragmento
-		mtu -= 20;
-		for(int i = 0; i < cantFragmentos; i++) {
-			desplazamiento[i] = acum;
-			acum += mtu;
-		}
-		return desplazamiento;
-	}
-
+	
 }
