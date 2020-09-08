@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Datagrama {
 /**
  * Fragmenta el datagrama original dado un tamaño original y un MTU
+ * @param tam_datagrama, mtu. El tamanio original del datagrama y el maximum transfer unit.
  * 
  */
 	public ArrayList<String> fragmentar(int tam_datagrama, int mtu) {

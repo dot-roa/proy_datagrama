@@ -6,6 +6,7 @@ public class Tabla {
 	ArrayList<String> filas = new ArrayList<String>();
 	
 	public Tabla() {
+		
 		String fila = "";
 		
 		filas.add(fila);
