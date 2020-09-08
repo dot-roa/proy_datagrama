@@ -3,19 +3,44 @@ package proy_datagrama;
 import java.util.ArrayList;
 
 public class Tabla {
-	ArrayList<String> filas = new ArrayList<String>();
-	Datagrama datagrama = new Datagrama();
+	private ArrayList<String> filas = new ArrayList<String>();
+	private Datagrama datagrama = new Datagrama();
 	
 	public Tabla(int tam_datagrama,int mtu) {
 		ArrayList<String> tam_fragmentos = datagrama.fragmentar(tam_datagrama, mtu);
-		ArrayList<String> flags = new ArrayList<>();
+		String[] flags = datagrama.calcularFlags(tam_fragmentos.size());
+		int[] desplazamientos = datagrama.calcularDesplazamiento(mtu, tam_fragmentos.size());
+		filas.add(crearEncabezadoTabla());
 		
 		for (int i = 0; i < tam_fragmentos.size() ; i++) {
+			//Desplazamiento en binario
+			String desBin = Util.convertirDecimalAStringBinario(desplazamientos[i]);
+			int numZeros = 13 - desBin.length();
+			String repeated = new String(new char[numZeros]).replace("\0", "0");
+			desBin = String.format("%s%s", repeated, desBin);
 			String fila = "";
-			fila+= tam_fragmentos.get(i)+"\t |";
+			fila += tam_fragmentos.get(i) + "\t |";
+			fila += flags[i] + "\t |";
+			fila += desBin + "\t |";
+			fila += desplazamientos[i] + "\t |";
+			fila += Util.convertirBinarioAHexa(String.format("%s%s", flags[i], desBin));
 			filas.add(fila);
 		}
-		
 	}
 	
+	public String crearEncabezadoTabla() {
+		String fila = "";
+		fila += "Tam frag\t |";
+		fila += "flags 0 | df | mf\t |";
+		fila += "Offset bin\t |";
+		fila += "Offset dec\t |";
+		fila += "hexa";
+		return fila;
+	}
+	
+	public void imprimir() {
+		for (String fila : filas) {
+			System.out.println(fila);
+		}
+	}
 }
