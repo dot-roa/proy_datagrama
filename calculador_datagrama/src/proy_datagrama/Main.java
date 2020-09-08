@@ -12,6 +12,8 @@ public class Main {
 		System.out.println("Por favor ingrese el");
 		tam_datagrama = Integer.parseInt(scn.nextLine());
 		mtu = Integer.parseInt(scn.nextLine());
+		
+		Tabla tabla = new Tabla(tam_datagrama,mtu);
 	}
 
 	public static void mensajear_roa() {
