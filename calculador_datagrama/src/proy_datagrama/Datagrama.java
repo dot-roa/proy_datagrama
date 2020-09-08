@@ -42,17 +42,17 @@ public class Datagrama {
 
 		String[] flags = new String[cantFragmentos];
 		if (cantFragmentos == 1) {
-			flags[0] = "010";
+			flags[0] = "000";
 			return flags;
 		}
 
 		for (int i = 0; i < flags.length; i++) {
 
 			if (i == flags.length - 1) {
-				flags[i] = "010";
+				flags[i] = "000";
 				return flags;
 			} else {
-				flags[i] = "011";
+				flags[i] = "001";
 			}
 		}
 
