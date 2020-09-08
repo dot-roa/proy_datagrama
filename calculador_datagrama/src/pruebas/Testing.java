@@ -16,5 +16,13 @@ public class Testing {
 		String[] aux = {"001","001","001","001","000"};
 		assertArrayEquals(aux, ret);
 	}
+	
+	@Test
+	public void testCalcularDesplazamientos() {
+		int[] res = datagrama.calcularDesplazamiento(620, 3);
+		int[] aux = {0, 600, 1200};
+		assertArrayEquals(aux, res);
+		
+	}
 
 }

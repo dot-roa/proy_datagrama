@@ -11,11 +11,12 @@ public class Main {
 		Scanner scn = new Scanner(System.in);
 		System.out.println("Por favor ingrese el tamanio del datagrama: ");
 		tam_datagrama = Integer.parseInt(scn.nextLine());
-		System.out.println("Por favor ingrese el mtu de la red: ");
+		System.out.println("Por favor ingrese el mtu de la red: ");		
 		mtu = Integer.parseInt(scn.nextLine());
 		
 		Tabla tabla = new Tabla(tam_datagrama, mtu);
 		tabla.imprimir();
+		scn.close();
 	}
 
 	public static void mensajear_roa() {
