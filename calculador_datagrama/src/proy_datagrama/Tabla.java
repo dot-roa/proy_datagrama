@@ -14,11 +14,13 @@ public class Tabla {
 			String fila = "";
 			fila+= tam_fragmentos.get(i)+"\t |";
 			filas.add(fila);
+		}		
+	}
+	
+	public void imprimir() {
+		for (String fila : filas) {
+			System.out.println(fila);
 		}
-		
-		
-		
-		
 	}
 	
 }

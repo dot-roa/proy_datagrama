@@ -12,12 +12,10 @@ public class Datagrama {
  * 
  */
 	public ArrayList<String> fragmentar(int tam_datagrama, int mtu) {
-		ArrayList<String> tam_fragmentos = new ArrayList<>();
-		int fragmentos = (int) Math.ceil(tam_datagrama / (mtu - 20));
-		
+		ArrayList<String> tam_fragmentos = new ArrayList<>();		
 		
 		while(tam_datagrama > mtu) {
-			tam_datagrama =-(mtu-20); //Se quitan 20 reservados para el encabezado
+			tam_datagrama -= (mtu-20); //Se quitan 20 reservados para el encabezado
 			tam_fragmentos.add(""+(mtu));
 		}
 		if (tam_datagrama == mtu) {
