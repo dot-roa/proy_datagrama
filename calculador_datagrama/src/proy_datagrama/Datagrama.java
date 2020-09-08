@@ -7,6 +7,7 @@ public class Datagrama {
 /**
  * Fragmenta el datagrama original dado un tamaño original y un MTU
  * @param tam_datagrama, mtu. El tamanio original del datagrama y el maximum transfer unit.
+ * @return Un ArrayList de los tamanios de cada fragmento 
  * 
  */
 	public ArrayList<String> fragmentar(int tam_datagrama, int mtu) {
@@ -15,9 +16,15 @@ public class Datagrama {
 		
 		
 		while(tam_datagrama > mtu) {
-			tam_fragmentos.add(""+(tam_datagrama-mtu));
+			tam_datagrama =-(mtu-20); //Se quitan 20 reservados para el encabezado
+			tam_fragmentos.add(""+(mtu));
 		}
-		tam_fragmentos.add(""+(tam_datagrama));
+		if (tam_datagrama == mtu) {
+			tam_fragmentos.add(""+(mtu));
+		}
+		else {
+			tam_fragmentos.add(""+(tam_datagrama+20));
+		}		
 		return tam_fragmentos;
 	}
 
