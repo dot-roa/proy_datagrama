@@ -5,6 +5,31 @@ import java.util.Scanner;
 
 public class Datagrama {
 
+	/**
+	 * Devuelve la cantidad de fragmentos que tendran que pasar por la red.
+	 * @param tam_datagrama
+	 * @param mtu
+	 * @return
+	 */
+	
+public int calcularCantFragmentos(int tam_datagrama, int mtu) {
+	double n = tam_datagrama/(double)(mtu-20);	
+	return (int) Math.ceil(n);
+}
+
+public String[] calcular16bitsHexa(String[] flags, String[] arrayOffsetsBin) {
+	
+	String [] hexas16bits = new String [flags.length];
+	
+	for (int i = 0; i < flags.length ; i++) {
+		String bin = String.format("%s%s", flags[i], arrayOffsetsBin[i]);
+		hexas16bits[i] = Util.convertirBinarioAHexa(bin);
+		
+	}
+	
+	return hexas16bits;
+}
+	
 /**
  * Fragmenta el datagrama original dado un tamaño original y un MTU
  * @param tam_datagrama, mtu. El tamanio original del datagrama y el maximum transfer unit.
@@ -12,9 +37,9 @@ public class Datagrama {
  * 
  */
 	public ArrayList<String> fragmentar(int tam_datagrama, int mtu) {
-		ArrayList<String> tam_fragmentos = new ArrayList<>();		
+		ArrayList<String> tam_fragmentos = new ArrayList<>();
 		
-		while(tam_datagrama > mtu) {
+		while(tam_datagrama > mtu-20) {
 			tam_datagrama -= (mtu-20); //Se quitan 20 reservados para el encabezado
 			tam_fragmentos.add(""+(mtu));
 		}
@@ -40,17 +65,17 @@ public class Datagrama {
 
 		String[] flags = new String[cantFragmentos];
 		if (cantFragmentos == 1) {
-			flags[0] = "010";
+			flags[0] = "000";
 			return flags;
 		}
 
 		for (int i = 0; i < flags.length; i++) {
 
 			if (i == flags.length - 1) {
-				flags[i] = "010";
+				flags[i] = "000";
 				return flags;
 			} else {
-				flags[i] = "011";
+				flags[i] = "001";
 			}
 		}
 

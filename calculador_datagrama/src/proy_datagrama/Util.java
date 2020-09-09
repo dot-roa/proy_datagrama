@@ -1,5 +1,7 @@
 package proy_datagrama;
 
+import java.util.ArrayList;
+
 public class Util {
 	
 	/**
@@ -137,6 +139,40 @@ public class Util {
 		}
 		return salida;
 		
+	}
+	
+	/**
+	 * Convierte un arreglo de Decimales a un arreglo de binarios
+	 * @param array
+	 * @return arregloBin
+	 */
+	public static String[] convertirArrDecABin(int[] arrDec){
+		String [] arrBin = new String[arrDec.length];
+		
+		for(int i = 0; i < arrDec.length ; i++) {
+			String bin = convertirDecimalAStringBinario(arrDec[i]);
+			int numZeros = 13 - bin.length(); //Binario de 13 bits
+			String repeated = new String(new char[numZeros]).replace("\0", "0");
+			bin = String.format("%s%s", repeated, bin);
+			arrBin[i] = bin;
+		}
+		
+		return arrBin;
+	}
+	
+	/**
+	 * Convierte un arreglo de Binarios a un arreglo de Hexadecimales
+	 * @param array
+	 * @return arregloHexa
+	 */
+	public static String[] convertirArrBinAHexa(String[] arrBin){
+		String [] arrHexa = new String[arrBin.length];
+		
+		for(int i = 0; i < arrBin.length ; i++) {
+			arrHexa[i] = convertirBinarioAHexa(arrBin[i]);
+		}
+		
+		return arrBin;
 	}
 
 }
