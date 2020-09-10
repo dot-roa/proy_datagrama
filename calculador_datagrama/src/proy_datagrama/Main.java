@@ -40,12 +40,23 @@ public class Main {
 							+ "===================="
 							+ "===================="
 							+ "===========================");
-					System.out.println("");
-					System.out.println("¿Desea ingresar otra red? (y/n):");
-					input = scn.nextLine();
-					
-					if(input.equalsIgnoreCase("n")) {
-						continuar = false;
+					boolean flag = true;
+					while(flag) {
+						System.out.println("");
+						System.out.println("¿Desea ingresar otra red? (y/n):");
+						input = scn.nextLine();
+						
+						if(input.equalsIgnoreCase("n")) {
+							continuar = false;
+							flag = false;
+						}
+						else if(input.equalsIgnoreCase("y")) {
+							continuar = true;
+							flag = false;
+						}
+						else {
+							System.out.println("letra invalida");
+						}
 					}
 				} else
 					System.out.println("Por favor ingrese datos validos");
