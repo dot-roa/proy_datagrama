@@ -2,34 +2,60 @@ package proy_datagrama;
 
 import java.util.Scanner;
 
+import org.junit.jupiter.api.condition.OS;
+
 public class Main {
 
 	public static void main(String[] args) {
 		int tam_datagrama = 0;
 		int mtu = 0;
-
-		Scanner scn = new Scanner(System.in);
-		System.out.println("Por favor ingrese el tamanio del datagrama: ");
-		tam_datagrama = Integer.parseInt(scn.nextLine());
-		System.out.println("Por favor ingrese el mtu de la red: ");		
-		mtu = Integer.parseInt(scn.nextLine());
-		scn.close();
+		String input;
+		boolean continuar = true;
 		
-		Tabla tabla = new Tabla(tam_datagrama, mtu);
-		tabla.imprimir();
-	}
+		String msg = "Calculadora para Datagramas de paquetes enviados por la red\n"
+				+ "Autores: - Juan Manuel Roa Mejia\n"
+				+ "	 - Miguel Angel Rodriguez Novoa\n"
+				+ "	 - Wilmar Stiven Valencia Cardona\n"
+				+ "v1.0.0\n"
+				+ "==================================================================\n";
 
-	public static void mensajear_roa() {
-		System.out.println("Hola mundo vamos a probar la magia de git :D");
-	}
-
-	public static void printMessage() {
-		System.out.println("Ultima prueba prro");
-	}
-	
-	public static void printATodos() 
-	{
-		System.out.println("Esto es un print hecho por wilmar");
+		System.out.println(msg);
+		Scanner scn = new Scanner(System.in);
+		while(continuar) {
+			System.out.println("Por favor ingrese el tamano del datagrama: ");
+			input = scn.nextLine();
+			if(Util.isNumber(input)) {
+				tam_datagrama = Integer.parseInt(input);
+				System.out.println("Por favor ingrese el mtu de la red: ");		
+				input = scn.nextLine();
+				if(Util.isNumber(input)) {
+					mtu = Integer.parseInt(input);
+					Tabla tabla = new Tabla(tam_datagrama, mtu);
+					tabla.imprimir();
+					
+					System.out.println("======================"
+							+ "===================="
+							+ "===================="
+							+ "===================="
+							+ "===================="
+							+ "===================="
+							+ "===========================");
+					System.out.println("");
+					System.out.println("¿Desea ingresar otra red? (y/n):");
+					input = scn.nextLine();
+					
+					if(input.equalsIgnoreCase("n")) {
+						continuar = false;
+					}
+				} else
+					System.out.println("Por favor ingrese datos validos");
+			} else
+				System.out.println("Por favor ingrese datos validos");
+		}
+		scn.close();
+		System.out.println("!Muchas gracias por usar nuestra aplicacion, lo esperamos pronto!");
+		
+		
 	}
 	
 }

@@ -15,15 +15,15 @@ public class Tabla {
 		for (int i = 0; i < tam_fragmentos.size() ; i++) {
 			//Desplazamiento en binario
 			String desBin = Util.convertirDecimalAStringBinario(desplazamientos[i]);
-			int numZeros = 13 - desBin.length();
-			String repeated = new String(new char[numZeros]).replace("\0", "0");
-			desBin = String.format("%s%s", repeated, desBin);
+			desBin = Util.completarConZeros(desBin, 13);
 			String fila = "\t\t"+i+ "\t |";
 			fila += "\t\t"+tam_fragmentos.get(i) + "\t |";
 			fila += "\t\t"+flags[i] + "\t\t|";
 			fila += "\t"+desBin + "\t |";
 			fila += "\t\t"+desplazamientos[i] + "\t |";
-			fila += "\t\t"+Util.convertirBinarioAHexa(String.format("%s%s", flags[i], desBin));
+			String hex = Util.convertirBinarioAHexa(String.format("%s%s", flags[i], desBin));
+			hex = Util.completarConZeros(hex, 4);
+			fila += "\t\t"+ hex;
 			filas.add(fila);
 		}		
 	}
@@ -38,10 +38,17 @@ public class Tabla {
 		String fila = "";
 		fila += "\tPaquete No.\t |";
 		fila += "\tTam frag\t |";
-		fila += "\t0 | df | mf\t\t|";
+		fila += "\t0 - df - mf\t\t|";
 		fila += "\tOffset bin\t |";
 		fila += "\tOffset dec\t |";
-		fila += "\thexa";
+		fila += "\thexa\n";
+		fila += "======================"
+				+ "===================="
+				+ "===================="
+				+ "===================="
+				+ "===================="
+				+ "===================="
+				+ "===========================";
 		return fila;
 	}
 	
