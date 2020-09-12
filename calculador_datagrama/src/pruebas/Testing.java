@@ -95,6 +95,30 @@ public class Testing {
 		
 	}
 	
-	
+	@Test 
+	public void casoDePrueba03() {
+		Datagrama d = new Datagrama();
+		int tam_datagrama = 2720;
+		int mtu = 800;
+		int n_fragmentos = d.calcularCantFragmentos(tam_datagrama, mtu);
+		System.out.println(n_fragmentos);
+		
+		ArrayList<String> tam_fragmentos = d.fragmentar(tam_datagrama, mtu);
+		String[] flags = d.calcularFlags(n_fragmentos);
+		int[] arrOffsets = d.calcularDesplazamiento(mtu, n_fragmentos);
+		String[] arrOffsetsBin = Util.convertirArrDecABin(arrOffsets);
+		String[] hexas16bits = d.calcular16bitsHexa(flags, arrOffsetsBin);
+
+		String [] exp_tam_fragmentos = {"800","800","800","400"};
+		String [] exp_flags = {"001","001","001","000"};
+		int [] exp_offsets = {0,  780, 1560, 2340}; 
+		String [] exp_hexas = {"2000", "230C", "2618", "924"};
+		
+		assertArrayEquals(exp_tam_fragmentos, tam_fragmentos.toArray()); 
+		assertArrayEquals(exp_flags, flags);
+		assertArrayEquals(exp_offsets, arrOffsets);
+		assertArrayEquals(exp_hexas, hexas16bits);
+		
+	}
 
 }
