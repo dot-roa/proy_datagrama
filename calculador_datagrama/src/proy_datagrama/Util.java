@@ -174,5 +174,29 @@ public class Util {
 		
 		return arrBin;
 	}
+	
+	/**
+	 * Metodo para completar a un teamaño deseado con ceros a la izquierda
+	 * @param palabra a convertir
+	 * @param tamDeseado tamaño deseado a convertir
+	 * @return
+	 */
+	public static String completarConZeros(String palabra, int tamDeseado) {
+		int numZeros = tamDeseado - palabra.length();
+		String repeated = new String(new char[numZeros]).replace("\0", "0");
+		return palabra = String.format("%s%s", repeated, palabra);
+	}
+	
+	public static boolean isNumber(String msg) 
+	{
+		try 
+		{
+			Integer.parseInt(msg);
+			return true;
+		}
+		catch (Exception e) {
+			return false;
+		}
+	}
 
 }
