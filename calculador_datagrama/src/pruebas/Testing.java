@@ -36,7 +36,7 @@ public class Testing {
 		
 	}
 	@Test
-	public void fragmentarTest() {
+	public void testFragmentar() {
 		Datagrama d = new Datagrama();
 		ArrayList<String> tam_fragmentos = d.fragmentar(1420, 620);
 		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("620","620","240")) ;
@@ -44,7 +44,7 @@ public class Testing {
 	}
 	
 	@Test 
-	public void prueba_roa() {
+	public void prueba_1() {
 		Datagrama d = new Datagrama();
 		int tam_datagrama = 3578;
 		int mtu = 560;
